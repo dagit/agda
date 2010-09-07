@@ -49,6 +49,11 @@ defaultArg = Arg NotHidden Relevant
 isHiddenArg :: Arg a -> Bool
 isHiddenArg arg = argHiding arg == Hidden
 
+makeRelevant :: Arg a -> Arg a
+makeRelevant a = if argRelevance a == Irrelevant 
+                  then a { argRelevance = Relevant } 
+                  else a
+
 instance Functor Arg where
     fmap f a = a { unArg = f (unArg a) }
 
